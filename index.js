@@ -207,6 +207,12 @@ export default class RNSketchCanvas extends React.Component {
     })
   }
 
+  setStrokeWidth(val) {
+    this.setState({
+      strokeWidth: val,
+    })
+  }
+
   _renderItem = ({ item, index }) => (
     <TouchableOpacity
       style={{ marginHorizontal: 2.5 }}
