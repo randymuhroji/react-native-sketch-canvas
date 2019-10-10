@@ -276,7 +276,7 @@ export default class RNSketchCanvas extends React.Component {
               flexDirection: 'row',
               flex: 1,
               justifyContent: 'space-between',
-              minHeight: 46,
+              height: 48,
             }}
           >
             {editable && this.props.closeComponent && (
@@ -362,7 +362,7 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogTitle={this.props.permissionDialogTitle}
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
-        {editable && (
+        {editable ? (
           <View style={{ flexDirection: 'row' }}>
             <FlatList
               data={this.props.strokeColors}
@@ -375,6 +375,8 @@ export default class RNSketchCanvas extends React.Component {
               showsHorizontalScrollIndicator={false}
             />
           </View>
+        ) : (
+          <View style={{ height: 38 }} />
         )}
       </View>
     )
