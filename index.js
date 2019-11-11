@@ -219,6 +219,7 @@ export default class RNSketchCanvas extends React.Component {
 
   _renderItem = ({ item, index }) => (
     <TouchableOpacity
+      key={index}
       style={{ marginHorizontal: 2.5 }}
       onPress={() => {
         if (this.state.color === item.color) {
@@ -276,7 +277,7 @@ export default class RNSketchCanvas extends React.Component {
               flexDirection: 'row',
               flex: 1,
               justifyContent: 'space-between',
-              height: 48,
+              minHeight: 46,
             }}
           >
             {editable && this.props.closeComponent && (
@@ -362,21 +363,27 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogTitle={this.props.permissionDialogTitle}
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
-        {editable ? (
-          <View style={{ flexDirection: 'row' }}>
-            <FlatList
+        {editable && (
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            {this.props.strokeColors.map((item, index) =>
+              this._renderItem({ item, index })
+            )}
+            {/* <FlatList
               data={this.props.strokeColors}
               extraData={this.state}
               keyExtractor={() =>
                 Math.ceil(Math.random() * 10000000).toString()
               }
+              contentContainerStyle={{
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              // style={{ alignItems: 'center', justifyContent: 'center' }}
               renderItem={this._renderItem}
               horizontal
               showsHorizontalScrollIndicator={false}
-            />
+            /> */}
           </View>
-        ) : (
-          <View style={{ height: 38 }} />
         )}
       </View>
     )
