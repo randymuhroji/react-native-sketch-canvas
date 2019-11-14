@@ -236,6 +236,8 @@ export default class RNSketchCanvas extends React.Component {
               alpha: this.props.alphlaValues[index + this._alphaStep],
             })
           }
+
+          this.setStrokeWidth(2)
         } else {
           this.setState({ color: item.color })
           this._colorChanged = true
@@ -293,6 +295,7 @@ export default class RNSketchCanvas extends React.Component {
             {editable && this.props.eraseComponent && (
               <TouchableOpacity
                 onPress={() => {
+                  this.setStrokeWidth(25)
                   this.setState({ color: '#00000000' })
                 }}
               >
@@ -303,6 +306,7 @@ export default class RNSketchCanvas extends React.Component {
             {editable && this.props.strokeWidthComponent && (
               <TouchableOpacity
                 onPress={() => {
+                 
                   this.nextStrokeWidth()
                 }}
               >
